@@ -1,0 +1,27 @@
+# Selecting folder for visual select Apple Mac-ro (ha)
+# ====================================================
+
+# How to assign to keyboard shortcut:
+# ----------------------------------
+
+# open automator > click 'service'
+# select 'no input' in 'service recieves selected'
+# search for applescript in the 'Name' search field on the left
+# drag and drop the 'Run Applescript' icon into the right hand pane.
+# add this script to the input in the dialog and save it (cmd + s)
+# then go to 'System Preferences' > keyboard > shortcuts
+# click on 'services' in the left had column
+# select your saved service click 'Add Shortcut'
+# then just use your keyboard to assign a shortcut.
+
+# script to copy:
+# --------------
+
+on run
+	set screenShotFolder to (POSIX path of (choose folder))
+	set theCurrentDate to current date
+	set shellCommand to "/usr/sbin/screencapture -i " & quoted form of (screenShotFolder & theCurrentDate & ".png")
+	do shell script shellCommand
+end run
+
+
